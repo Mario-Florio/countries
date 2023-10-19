@@ -16,7 +16,17 @@ function Main() {
                 <SearchBar/>
                 <SelectRegion/>
             </div>
-            <Card/>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                    gap: "1rem",
+                }}
+            >
+                <Card/>
+                <Card/>
+            </div>
         </main>
     );
 }
