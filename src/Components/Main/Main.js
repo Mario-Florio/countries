@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Main.css";
 import searchIcon from "./search.png";
+import Card from "./Card/Card";
 
 function Main() {
     return(
@@ -8,13 +9,14 @@ function Main() {
             <div 
                 style={{
                     display: "flex", 
-                    flexDirection: "column", 
+                    flexWrap: "wrap",
                     justifyContent: "space-between", 
                     height: "135px"
                 }}>
                 <SearchBar/>
                 <SelectRegion/>
             </div>
+            <Card/>
         </main>
     );
 }
