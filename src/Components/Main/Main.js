@@ -5,7 +5,16 @@ import searchIcon from "./search.png";
 function Main() {
     return(
         <main>
-            <SearchBar/>
+            <div 
+                style={{
+                    display: "flex", 
+                    flexDirection: "column", 
+                    justifyContent: "space-between", 
+                    height: "135px"
+                }}>
+                <SearchBar/>
+                <SelectRegion/>
+            </div>
         </main>
     );
 }
@@ -49,6 +58,26 @@ function SearchBar() {
                     value={input}
                     onChange={handleChange}
                 />
+            </div>
+        </form>
+    )
+}
+
+function SelectRegion() {
+    return(
+        <form>
+            <div className="selectRegion">
+                <label 
+                    htmlFor="region"
+                    style={{display: "none"}}
+                >
+                    Filter by Region
+                </label>
+                <select name="region" id="region" autoComplete="on">
+                    <option value="Country 1">Country 1</option>
+                    <option value="Country 2">Country 2</option>
+                    <option value="Country 3">Country 3</option>
+                </select>
             </div>
         </form>
     )
