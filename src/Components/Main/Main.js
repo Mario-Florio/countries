@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Main.css";
 import searchIcon from "./search.png";
 import Card from "./Card/Card";
+import { getData } from "../../data";
 
 function Main() {
+
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        getData().then((data) => {
+            console.log(data)
+            setCountries(data);
+        });
+    }, []);
+
     return(
         <main>
             <div 
@@ -21,11 +32,19 @@ function Main() {
                     display: "flex",
                     justifyContent: "center",
                     flexWrap: "wrap",
-                    gap: "1rem",
+                    gap: "2.5rem",
                 }}
             >
-                <Card/>
-                <Card/>
+                {countries.map(country => 
+                    <Card 
+                        key={country.name.common}
+                        name={country.name.common}
+                        img={country.flags.png}
+                        population={country.population}
+                        region={country.region}
+                        capital={country.capital}
+                    />
+                )}
             </div>
         </main>
     );
