@@ -12,6 +12,11 @@
     width: 100%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    cursor: pointer;
+}
+
+.card img:hover {
+    outline: solid 1px rgb(255, 255, 255);
 }
 
 .card article {
