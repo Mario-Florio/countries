@@ -45,25 +45,27 @@ function Country(props) {
 
     return(
         <div className="country">
-            <div>
-                <button onClick={handleClick}>Back</button>
+            <div style={{flex: "1"}}>
+                <button style={{display: "block"}} onClick={handleClick}>Back</button>
                 <img src={flags.png} alt={`${name.common} flag`}/>
             </div>
-            <div>
-                <div className="flexBox">
-                    <section>
-                        <h2>{name.common}</h2>
-                        <p>Native Name: <span>{getNativeName(name.nativeName)}</span></p>
-                        <p>Population: <span>{population}</span></p>
-                        <p>Region: <span>{region}</span></p>
-                        <p>Sub Region: <span>{subregion}</span></p>
-                        <p>Capital: <span>{capital}</span></p>
-                    </section>
-                    <section>
-                        <p>Top Level Domain: <span>{tld}</span></p>
-                        <p>Currencies: <span>{getCurrencies(currencies)}</span></p>
-                        <p>Languages: <span>{getLanguages(languages)}</span></p>
-                    </section>
+            <div style={{flex: "1"}}>
+                <div>
+                    <h2>{name.common}</h2>
+                    <div className="flexBox">
+                        <section>
+                            <p>Native Name: <span>{getNativeName(name.nativeName)}</span></p>
+                            <p>Population: <span>{population}</span></p>
+                            <p>Region: <span>{region}</span></p>
+                            <p>Sub Region: <span>{subregion}</span></p>
+                            <p>Capital: <span>{capital}</span></p>
+                        </section>
+                        <section>
+                            <p>Top Level Domain: <span>{tld}</span></p>
+                            <p>Currencies: <span>{getCurrencies(currencies)}</span></p>
+                            <p>Languages: <span>{getLanguages(languages)}</span></p>
+                        </section>
+                    </div>
                 </div>
                 {borders && 
                 <section>
