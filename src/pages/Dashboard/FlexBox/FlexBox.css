@@ -48,7 +48,7 @@
     font-weight: 300;
 }
 
-@media all and (min-width: 1400px) {
+@media all and (min-width: 700px) {
     .dashboard {
         gap: 4.5rem;
         transition-duration: .2s;
