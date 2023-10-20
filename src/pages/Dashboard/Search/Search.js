@@ -1,6 +1,7 @@
+import { useState, useEffect, useContext } from "react";
 import "./Search.css";
 import searchIcon from "./search.png";
-import { useState, useEffect } from "react";
+import { ThemeContext } from "../../../App";
 
 function Search(props) {
     const { setSearch, setRegion } = props;
@@ -21,6 +22,7 @@ function Search(props) {
 export default Search;
 
 function SearchBar(props) {
+    const theme = useContext(ThemeContext);
 
     const { setSearch } = props;
     const [input, setInput] = useState('');
@@ -37,7 +39,7 @@ function SearchBar(props) {
 
     return(
         <form onSubmit={handleSubmit}>
-            <div className="searchBar">
+            <div className={`searchBar ${theme}EL`}>
                 <button>
                     <img 
                         src={searchIcon} 
@@ -65,6 +67,7 @@ function SearchBar(props) {
 }
 
 function SelectRegion(props) {
+    const theme = useContext(ThemeContext);
 
     const { setRegion } = props;
     const [selected, setSelected] = useState("");
@@ -79,7 +82,7 @@ function SelectRegion(props) {
 
     return(
         <form>
-            <div className="selectRegion">
+            <div className={`selectRegion ${theme}EL`}>
                 <label 
                     htmlFor="region"
                     style={{display: "none"}}

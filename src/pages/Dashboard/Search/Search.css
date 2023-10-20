@@ -2,7 +2,6 @@
 .searchBar {
     display: flex;
     align-items: center;
-    background-color: hsl(209, 23%, 22%);
     margin: 1rem 0;
     padding: .75rem 1.5rem;
     border-radius: 5px;
@@ -18,24 +17,22 @@
     position: relative;
     top: 2px;
     margin: 0 .75rem 0 0;
-    filter: invert(100%);
+    filter: invert(60%);
     cursor: pointer;
 }
 
+.dark .searchBar img {
+    filter: invert(100%);
+}
+
 .searchBar input {
-    color: hsl(0, 0%, 100%);
     font-size: .7rem;
     background: none;
     border: none;
     outline: none;
 }
 
-.searchBar ::placeholder {
-    color: hsl(0, 0%, 100%);
-}
-
 .selectRegion {
-    background-color: hsl(209, 23%, 22%);
     margin: 1rem 0;
     padding: .875rem 1.5rem;
     border-radius: 5px;

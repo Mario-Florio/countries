@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import "./Country.css";
+import { ThemeContext } from "../../App";
 
 function Country(props) {
+    const theme = useContext(ThemeContext);
+
     const { country, setSelected } = props;
     const { 
         flags, 
@@ -45,7 +49,13 @@ function Country(props) {
 
     return(
         <div className="country">
-            <button style={{display: "block"}} onClick={handleClick}>Back</button>
+            <button 
+                className={`${theme}EL`}
+                style={{display: "block"}} 
+                onClick={handleClick}
+            >
+                Back
+            </button>
             <div className="flexBox__outer">
                 <div className="flexBox__outer--left" style={{flex: "1"}}>
                     <img src={flags.png} alt={`${name.common} flag`}/>
@@ -72,7 +82,7 @@ function Country(props) {
                     <section>
                         <p>Border Countries:</p>
                         {borders.map(border => {
-                            return <span key={border} className="borderTag">{border}</span>
+                            return <span key={border} className={`borderTag ${theme}EL`}>{border}</span>
                         })}
                     </section>}
                 </div>

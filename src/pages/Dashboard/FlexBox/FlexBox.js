@@ -1,7 +1,8 @@
+import { useContext } from "react";
 import "./FlexBox.css";
+import { ThemeContext } from "../../../App";
 
 function FlexBox(props) {
-
     const { countries, search, region, setSelected, setCountry } = props;
 
     function createCard(country) {
@@ -84,18 +85,18 @@ function FlexBox(props) {
 export default FlexBox;
 
 function Card(props) {
+    const theme = useContext(ThemeContext);
 
     const { country, setSelected, setCountry } = props;
     const { name, flags, population, region, capital } = country;
 
     function handleClick() {
-        console.log(country);
         setSelected(true);
         setCountry(country);
     }
 
     return(
-        <article className="card">
+        <article className={`card ${theme}EL`}>
             <img src={flags.png} alt={`${name.common} flag`} onClick={handleClick}/>
             <section>
                 <h2>{name.common}</h2>

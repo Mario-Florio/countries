@@ -1,14 +1,17 @@
+import { createContext, useState } from 'react';
 import './App.css';
 import Header from "./Components/Header/Header";
 import Main from "./Components/Main/Main";
 
-function App() {
+export const ThemeContext = createContext('dark');
+
+export default function App() {
+  const [theme, setTheme] = useState('dark');
+
   return (
-    <div className="App">
-      <Header/>
+    <ThemeContext.Provider value={theme}>
+      <Header setTheme={setTheme}/>
       <Main/>
-    </div>
+    </ThemeContext.Provider>
   );
 }
-
-export default App;
