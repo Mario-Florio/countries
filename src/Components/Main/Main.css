@@ -6,7 +6,7 @@ main {
     transition-duration: .2s;
 }
 
-@media all and (min-width: 1400px) {
+@media all and (min-width: 700px) {
     main {
         padding: 1rem 4.5rem;
         transition-duration: .2s;

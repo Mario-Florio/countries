@@ -21,7 +21,7 @@ header .themeToggle {
     font-weight: 600;
 }
 
-@media all and (min-width: 1400px) {
+@media all and (min-width: 700px) {
     header {
         padding: 0 4.5rem;
         transition-duration: .2s;

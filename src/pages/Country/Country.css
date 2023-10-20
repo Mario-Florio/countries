@@ -45,19 +45,27 @@
     box-shadow: 0px 0px 7px rgb(27, 27, 27);
 }
 
-@media all and (min-width: 1400px) {
-    .country {
+@media all and (min-width: 900px) {
+    .country .flexBox__outer {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
+    }
+
+    .country .flexBox__outer--left {
+        margin-right: 2rem;
     }
 
     .country img {
         width: 450px;
     }
 
-    .country .flexBox {
+    .country .flexBox__inner {
         display: flex;
         justify-content: space-between;
+    }
+
+    .country .flexBox__inner--left {
+        margin-right: 1rem;
     }
 }
