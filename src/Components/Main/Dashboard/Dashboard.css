@@ -1,4 +1,13 @@
 
+.dashboard {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin: 1rem 0;
+    transition-duration: .2s;
+}
+
 .card {
     background-color: hsl(209, 23%, 22%);
     height: 310px;
@@ -19,22 +28,29 @@
     outline: solid 1px rgb(255, 255, 255);
 }
 
-.card article {
+.card section {
     font-size: .85rem;
     font-weight: 600;
     padding: .75rem 1.5rem;
 }
 
-.card article h2 {
+.card section h2 {
     font-size: 1.1rem;
     margin: .5rem 0;
 }
 
-.card article p {
+.card section p {
     font-size: .8rem;
     margin: .25rem 0;
 }
 
-.card article span {
+.card section span {
     font-weight: 300;
+}
+
+@media all and (min-width: 1400px) {
+    .dashboard {
+        gap: 4.5rem;
+        transition-duration: .2s;
+    }
 }

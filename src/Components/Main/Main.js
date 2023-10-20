@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Main.css";
 import searchIcon from "./search.png";
-import Card from "./Card/Card";
+import Dashboard from "./Dashboard/Dashboard";
 import { getData } from "../../data";
 
 function Main() {
@@ -17,44 +17,6 @@ function Main() {
         });
     }, []);
 
-    function compareSearch(country) {
-        let card = (<Card 
-            key={country.name.common}
-            name={country.name.common}
-            img={country.flags.png}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-        />);
-        for (let i = 0; i < country.altSpellings.length; i++) {
-            let countryName = country.altSpellings[i].toLowerCase();
-            if (countryName === search) {
-                return card;
-            }
-        }
-        for (let name in country.name) {
-            if (typeof country.name[name] === 'object') break;
-            let countryName = country.name[name].toLowerCase();
-            if (countryName === search) {
-                return card;
-            }
-        }
-        if (country.cca2.toLowerCase() === search) {
-            return card;
-        }
-        if (country.cca3.toLowerCase() === search) {
-            return card;
-        }
-        if (country.ccn3 === search) {
-            return card;
-        }
-        if (country.cioc) {
-            if (country.cioc.toLowerCase() === search) {
-                return card;
-            }
-        }
-    }
-
     return(
         <main>
             <div 
@@ -66,49 +28,7 @@ function Main() {
                 <SearchBar setSearch={setSearch}/>
                 <SelectRegion setRegion={setRegion}/>
             </div>
-            <div
-                className="dashboard"
-            >
-                {!region ?
-                    countries.map(country => {
-                        let card = (
-                            <Card 
-                                key={country.name.common}
-                                name={country.name.common}
-                                img={country.flags.png}
-                                population={country.population}
-                                region={country.region}
-                                capital={country.capital}
-                            />
-                        );
-                        if (search) {
-                            return compareSearch(country);
-                        } else {
-                            return card;
-                        }
-                    })
-                        :
-                    countries.map(country => {
-                        let card = (
-                            <Card 
-                                key={country.name.common}
-                                name={country.name.common}
-                                img={country.flags.png}
-                                population={country.population}
-                                region={country.region}
-                                capital={country.capital}
-                            />
-                        );
-                        if (region === country.region) {
-                            if (search) {
-                                return compareSearch(country);
-                            } else {
-                                return card;
-                            }
-                        }
-                    })
-                }
-            </div>
+            <Dashboard countries={countries} search={search} region={region}/>
         </main>
     );
 }

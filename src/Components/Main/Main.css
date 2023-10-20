@@ -60,23 +60,9 @@ main {
     border: none;
 }
 
-.dashboard {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    margin: 1rem 0;
-    transition-duration: .2s;
-}
-
 @media all and (min-width: 1400px) {
     main {
         padding: 1rem 4.5rem;
-        transition-duration: .2s;
-    }
-    
-    .dashboard {
-        gap: 4.5rem;
         transition-duration: .2s;
     }
 }
