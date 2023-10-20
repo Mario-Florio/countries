@@ -7,10 +7,11 @@ import { getData } from "../../data";
 function Main() {
 
     const [countries, setCountries] = useState([]);
+    const [search, setSearch] = useState(null);
 
     useEffect(() => {
         getData().then((data) => {
-            console.log(data)
+            console.log(data);
             setCountries(data);
         });
     }, []);
@@ -23,22 +24,64 @@ function Main() {
                     flexWrap: "wrap",
                     justifyContent: "space-between"
                 }}>
-                <SearchBar/>
+                <SearchBar setSearch={setSearch}/>
                 <SelectRegion/>
             </div>
             <div
                 className="dashboard"
             >
-                {countries.map(country => 
-                    <Card 
-                        key={country.name.common}
-                        name={country.name.common}
-                        img={country.flags.png}
-                        population={country.population}
-                        region={country.region}
-                        capital={country.capital}
-                    />
-                )}
+                {search ? 
+                    countries.map(country => {
+                        let card = (<Card 
+                                        key={country.name.common}
+                                        name={country.name.common}
+                                        img={country.flags.png}
+                                        population={country.population}
+                                        region={country.region}
+                                        capital={country.capital}
+                                    />);
+                        for (let i = 0; i < country.altSpellings.length; i++) {
+                            let countryName = country.altSpellings[i].toLowerCase();
+                            if (countryName === search) {
+                                return card;
+                            }
+                        }
+                        for (let name in country.name) {
+                            if (typeof country.name[name] === 'object') break;
+                            let countryName = country.name[name].toLowerCase();
+                            if (countryName === search) {
+                                return card;
+                            }
+                        }
+                        if (country.cca2.toLowerCase() === search) {
+                                return card;
+                        }
+                        if (country.cca3.toLowerCase() === search) {
+                                return card;
+                        }
+                        if (country.ccn3 === search) {
+                                return card;
+                        }
+                        if (country.cioc) {
+                            if (country.cioc.toLowerCase() === search) {
+                                return card;
+                            }
+                        }
+                    })
+                        :
+                    countries.map(country => {
+                        return(
+                            <Card 
+                            key={country.name.common}
+                            name={country.name.common}
+                            img={country.flags.png}
+                            population={country.population}
+                            region={country.region}
+                            capital={country.capital}
+                        />
+                        )
+                    })
+                }
             </div>
         </main>
     );
@@ -46,8 +89,9 @@ function Main() {
 
 export default Main;
 
-function SearchBar() {
+function SearchBar(props) {
 
+    const { setSearch } = props;
     const [input, setInput] = useState('');
 
     function handleChange(e) {
@@ -56,6 +100,7 @@ function SearchBar() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        if (input.length) setSearch(input.toLowerCase());
         setInput('');
     }
 
