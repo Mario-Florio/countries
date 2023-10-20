@@ -21,8 +21,7 @@ function Main() {
                 style={{
                     display: "flex", 
                     flexWrap: "wrap",
-                    justifyContent: "space-between", 
-                    height: "135px"
+                    justifyContent: "space-between"
                 }}>
                 <SearchBar/>
                 <SelectRegion/>
