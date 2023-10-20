@@ -3,6 +3,7 @@ main {
     background-color: hsl(207, 26%, 17%);
     min-height: 100vh;
     padding: 2rem 1rem;
+    transition-duration: .2s;
 }
 
 .searchBar {
@@ -55,4 +56,24 @@ main {
 
 .selectRegion option {
     border: none;
+}
+
+.dashboard {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    transition-duration: .2s;
+}
+
+@media all and (min-width: 1400px) {
+    main {
+        padding: 2rem 4.5rem;
+        transition-duration: .2s;
+    }
+    
+    .dashboard {
+        gap: 4.5rem;
+        transition-duration: .2s;
+    }
 }

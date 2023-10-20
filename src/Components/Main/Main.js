@@ -28,12 +28,7 @@ function Main() {
                 <SelectRegion/>
             </div>
             <div
-                style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    flexWrap: "wrap",
-                    gap: "2.5rem",
-                }}
+                className="dashboard"
             >
                 {countries.map(country => 
                     <Card 
