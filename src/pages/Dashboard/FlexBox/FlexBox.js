@@ -1,13 +1,15 @@
-import "./Dashboard.css";
+import "./FlexBox.css";
 
-function Dashboard(props) {
+function FlexBox(props) {
 
-    const { countries, search, region } = props;
+    const { countries, search, region, setSelected, setCountry } = props;
 
     function createCard(country) {
         return(<Card
             key={country.name.common}
             country={country}
+            setSelected={setSelected}
+            setCountry={setCountry}
         />);
     }
 
@@ -79,16 +81,21 @@ function Dashboard(props) {
     )
 }
 
-export default Dashboard;
+export default FlexBox;
 
 function Card(props) {
 
-    const { country } = props;
+    const { country, setSelected, setCountry } = props;
     const { name, flags, population, region, capital } = country;
+
+    function handleClick() {
+        setSelected(true);
+        setCountry(country);
+    }
 
     return(
         <article className="card">
-            <img src={flags.png} alt={`${name.common} flag`} onClick={() => console.log(country)}/>
+            <img src={flags.png} alt={`${name.common} flag`} onClick={handleClick}/>
             <section>
                 <h2>{name.common}</h2>
                 <p>Population: <span>{population}</span></p>
