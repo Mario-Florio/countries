@@ -8,6 +8,7 @@ function Main() {
 
     const [countries, setCountries] = useState([]);
     const [search, setSearch] = useState(null);
+    const [region, setRegion] = useState("");
 
     useEffect(() => {
         getData().then((data) => {
@@ -63,18 +64,14 @@ function Main() {
                     justifyContent: "space-between"
                 }}>
                 <SearchBar setSearch={setSearch}/>
-                <SelectRegion/>
+                <SelectRegion setRegion={setRegion}/>
             </div>
             <div
                 className="dashboard"
             >
-                {search ? 
+                {!region ?
                     countries.map(country => {
-                        return compareSearch(country);
-                    })
-                        :
-                    countries.map(country => {
-                        return(
+                        let card = (
                             <Card 
                                 key={country.name.common}
                                 name={country.name.common}
@@ -83,7 +80,32 @@ function Main() {
                                 region={country.region}
                                 capital={country.capital}
                             />
-                        )
+                        );
+                        if (search) {
+                            return compareSearch(country);
+                        } else {
+                            return card;
+                        }
+                    })
+                        :
+                    countries.map(country => {
+                        let card = (
+                            <Card 
+                                key={country.name.common}
+                                name={country.name.common}
+                                img={country.flags.png}
+                                population={country.population}
+                                region={country.region}
+                                capital={country.capital}
+                            />
+                        );
+                        if (region === country.region) {
+                            if (search) {
+                                return compareSearch(country);
+                            } else {
+                                return card;
+                            }
+                        }
                     })
                 }
             </div>
@@ -137,7 +159,19 @@ function SearchBar(props) {
     )
 }
 
-function SelectRegion() {
+function SelectRegion(props) {
+
+    const { setRegion } = props;
+    const [selected, setSelected] = useState("");
+
+    useEffect(() => {
+        setRegion(selected);
+    }, [selected]);
+
+    function handleChange(e) {
+        setSelected(e.target.value);
+    }
+
     return(
         <form>
             <div className="selectRegion">
@@ -147,10 +181,19 @@ function SelectRegion() {
                 >
                     Filter by Region
                 </label>
-                <select name="region" id="region" autoComplete="on">
-                    <option value="Country 1">Country 1</option>
-                    <option value="Country 2">Country 2</option>
-                    <option value="Country 3">Country 3</option>
+                <select 
+                    name="region" 
+                    id="region" 
+                    value={selected} 
+                    autoComplete="on"
+                    onChange={handleChange}
+                >
+                    <option value="">Filter by Region</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
                 </select>
             </div>
         </form>
