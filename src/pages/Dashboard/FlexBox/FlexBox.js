@@ -89,6 +89,7 @@ function Card(props) {
     const { name, flags, population, region, capital } = country;
 
     function handleClick() {
+        console.log(country);
         setSelected(true);
         setCountry(country);
     }

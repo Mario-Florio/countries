@@ -13,7 +13,6 @@ function Main() {
 
     useEffect(() => {
         getData().then((data) => {
-            console.log(data);
             setCountries(data);
         });
     }, []);
