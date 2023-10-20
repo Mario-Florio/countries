@@ -1,17 +1,18 @@
 import "./Dashboard.css";
 
 function Dashboard(props) {
+
     const { countries, search, region } = props;
 
-    function compareSearch(country) {
-        let card = (<Card 
+    function createCard(country) {
+        return(<Card
             key={country.name.common}
-            name={country.name.common}
-            img={country.flags.png}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
+            country={country}
         />);
+    }
+
+    function compareSearch(country) {
+        let card = createCard(country)
         for (let i = 0; i < country.altSpellings.length; i++) {
             let countryName = country.altSpellings[i].toLowerCase();
             if (countryName === search) {
@@ -47,16 +48,7 @@ function Dashboard(props) {
         >
             {!region ?
                 countries.map(country => {
-                    let card = (
-                        <Card 
-                            key={country.name.common}
-                            name={country.name.common}
-                            img={country.flags.png}
-                            population={country.population}
-                            region={country.region}
-                            capital={country.capital}
-                        />
-                    );
+                    let card = createCard(country);
                     if (search) {
                         if (search === "all") {
                             return card;
@@ -69,16 +61,7 @@ function Dashboard(props) {
                 })
                     :
                 countries.map(country => {
-                    let card = (
-                        <Card 
-                            key={country.name.common}
-                            name={country.name.common}
-                            img={country.flags.png}
-                            population={country.population}
-                            region={country.region}
-                            capital={country.capital}
-                        />
-                    );
+                    let card = createCard(country);
                     if (region === country.region) {
                         if (search) {
                             if (search === "all") {
@@ -100,13 +83,14 @@ export default Dashboard;
 
 function Card(props) {
 
-    const { img, name, population, region, capital } = props;
+    const { country } = props;
+    const { name, flags, population, region, capital } = country;
 
     return(
         <article className="card">
-            <img src={img} alt={name}/>
+            <img src={flags.png} alt={`${name.common} flag`} onClick={() => console.log(country)}/>
             <section>
-                <h2>{name}</h2>
+                <h2>{name.common}</h2>
                 <p>Population: <span>{population}</span></p>
                 <p>Region: <span>{region}</span></p>
                 <p>Capital: <span>{capital}</span></p>
